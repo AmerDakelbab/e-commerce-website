@@ -1,8 +1,16 @@
-# React + Vite
+E-Commerce Website
+An E-commerce website built using React for the frontend, Node.js and Express for the backend, and MySQL as the database. The project includes features such as user authentication (sign-up and sign-in), a shopping cart, an admin panel, and a dynamic category-based product display.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+User Authentication: Allows users to register and sign in and either go to admin or normal website.
+Shopping Cart: Users can add,edit,delete products to their cart and manage their items.
+Admin Panel: Admins can manage products and categories.
+Dynamic Categories: Fetches categories dynamically from the backend and displays them in a sidebar.
+Responsive Design: Optimized for various devices using Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+Technology Stack
+Frontend: React, Tailwind CSS
+Backend: Node.js, Express.js
+Database: MySQL
