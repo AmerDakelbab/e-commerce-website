@@ -30,10 +30,11 @@ app.use('/Images', express.static(path.join(__dirname, 'Images')));
 const SECRET_KEY = 'SECRET_KEY';
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'ecom'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    port: process.env.PORT, // Optional, default is 3306
 });
 
 db.connect((err) => {
