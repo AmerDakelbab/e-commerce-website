@@ -29,13 +29,9 @@ app.use('/Images', express.static(path.join(__dirname, 'Images')));
 
 const SECRET_KEY = 'SECRET_KEY';
 
-const db = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
-    port: process.env.PORT, // Optional, default is 3306
-});
+const urlDb = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}:${process.env.MYSQLHOST}:${process.env.MYSQLPORT}:${process.env.MYSQLDATABASE}`
+
+const db = mysql.createConnection(urlDb);
 
 db.connect((err) => {
     if (err) {
