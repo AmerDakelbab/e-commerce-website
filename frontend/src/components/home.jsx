@@ -30,7 +30,7 @@ useEffect(() => {
             localStorage.removeItem('hasLoggedIn');
         }
 
-  fetch("http://localhost:5000/")
+  fetch(`${process.env.REACT_BACKEND_URL}`)
     .then(response => response.json())
     .then(data => setProducts(shuffleArray(data)))
     .catch(error => console.error('Error fetching data:', error));
@@ -43,7 +43,7 @@ return (
   {products.map((product, index) => (
         <div key={index} className='flex flex-col ml-2 mt-20 p-4 bg-white w-48 justify-center items-center' >
           <div>
-          <img className='h-60 w-60 object-fit' src={`http://localhost:5000/${product.image}`} alt={product.product_name} /> 
+          <img className='h-60 w-60 object-fit' src={`${process.env.REACT_BACKEND_URL}/${product.image}`} alt={product.product_name} /> 
 
             <div className='flex'>
               <div className='font-bold'>{product.category}</div> /

@@ -22,11 +22,11 @@ function Admin() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const productsResponse = await fetch("http://localhost:5000/admin/viewproducts");
+                const productsResponse = await fetch(`${process.env.REACT_BACKEND_URL}/admin/viewproducts`);
                 const productsData = await productsResponse.json();
                 setProducts(productsData);
 
-                const categoriesResponse = await fetch("http://localhost:5000/admin/viewcategories");
+                const categoriesResponse = await fetch(`${process.env.REACT_BACKEND_URL}/admin/viewcategories`);
                 const categoriesData = await categoriesResponse.json();
                 console.log(categoriesData); // Check the structure of the fetched data
                 setCategories(categoriesData);
@@ -53,7 +53,7 @@ function Admin() {
             title: 'Image',
             dataIndex: 'image',
             key: 'image',
-            render: (image) => <img src={`http://localhost:5000/${image}`} alt='product' className='w-16 h-16 object-contain' />
+            render: (image) => <img src={`${process.env.REACT_BACKEND_URL}/${image}`} alt='product' className='w-16 h-16 object-contain' />
         },
         {
             title: 'Product Name',
@@ -90,7 +90,7 @@ function Admin() {
 
     const handleDelete = async (productId) => {
         try {
-            const response = await fetch(`http://localhost:5000/admin/viewproducts/${productId}`, {
+            const response = await fetch(`${process.env.REACT_BACKEND_URL}/admin/viewproducts/${productId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -136,7 +136,7 @@ function Admin() {
         }
 
         try {
-            const response = await axios.put(`http://localhost:5000/admin/viewproducts/${currentProductId}`, formData, {
+            const response = await axios.put(`${process.env.REACT_BACKEND_URL}/admin/viewproducts/${currentProductId}`, formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',
                     'Authorization': `Bearer ${token}`, // Include the token in the request

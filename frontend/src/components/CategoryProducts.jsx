@@ -9,7 +9,7 @@ function CategoryProducts({isVisible,addToCart}) {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/categories/${name}`)
+    fetch(`${process.env.REACT_BACKEND_URL}/categories/${name}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('No products found or server error');
@@ -39,7 +39,7 @@ function CategoryProducts({isVisible,addToCart}) {
       products.map((product, index) => (
         <div key={index} className='flex flex-col ml-2 mt-20 p-4 bg-white w-48 justify-center items-center'>
           <div>
-            <img className='h-60 w-60 object-fit' src={`http://localhost:5000/${product.image}`} alt={product.product_name} />
+            <img className='h-60 w-60 object-fit' src={`${process.env.REACT_BACKEND_URL}/${product.image}`} alt={product.product_name} />
             <div className='flex'>
               <div className='font-bold'>{product.category}</div> /
               <div className='font-bold'>{product.product_name}</div>

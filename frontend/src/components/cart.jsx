@@ -15,7 +15,7 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
   }, [cartProducts]);
 
   const handleRemove = (productId) => {
-    axios.delete(`http://localhost:5000/cart/${userId}/${productId}`, {
+    axios.delete(`${process.env.REACT_BACKEND_URL}/cart/${userId}/${productId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -31,7 +31,7 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
   };
 
   const handleIncrement = (productId) => {
-    axios.post('http://localhost:5000/cart/increment', { productId }, {
+    axios.post(`${process.env.REACT_BACKEND_URL}/cart/increment`, { productId }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -48,7 +48,7 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
 
 
   const handleDecrement = (productId) => {
-    axios.post('http://localhost:5000/cart/decrement', { productId }, {
+    axios.post(`${process.env.REACT_BACKEND_URL}/cart/decrement`, { productId }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -75,7 +75,7 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
             cartProducts.map(product => (
               <div className='flex justify-center '>
               <div key={product.product_id} className='flex justify-center h-full w-full items-center overscroll-x-none bg-white mx-2 my-3 p-2 rounded-lg shadow-md sm: 2xl: '>
-                <img className='w-32 h-32 object-contain' src={`http://localhost:5000/${product.image}`} alt={product.product_name} />
+                <img className='w-32 h-32 object-contain' src={`${process.env.REACT_BACKEND_URL}/${product.image}`} alt={product.product_name} />
                 <div className='flex w-full justify-between '>
                   <div className=' flex flex-col justify-center h-full'>
                     <h2 className='font-semibold'>{product.product_name}</h2>
