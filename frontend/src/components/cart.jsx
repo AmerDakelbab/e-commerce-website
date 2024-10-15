@@ -15,7 +15,7 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
   }, [cartProducts]);
 
   const handleRemove = (productId) => {
-    axios.delete(`${process.env.REACT_BACKEND_URL}/cart/${userId}/${productId}`, {
+    axios.delete(`http://localhost:5000/cart/${userId}/${productId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -31,7 +31,7 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
   };
 
   const handleIncrement = (productId) => {
-    axios.post(`${process.env.REACT_BACKEND_URL}/cart/increment`, { productId }, {
+    axios.post(`http://localhost:5000/cart/increment`, { productId }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -48,7 +48,7 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
 
 
   const handleDecrement = (productId) => {
-    axios.post(`${process.env.REACT_BACKEND_URL}/cart/decrement`, { productId }, {
+    axios.post(`http://localhost:5000/cart/decrement`, { productId }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -73,21 +73,22 @@ function Cart({ userId, setCartProducts, cartProducts, totalCart, isVisible }) {
         <div className='overflow-y-auto flex justify-center flex-col ' style={{ maxHeight: '60vh' }}>
           {cartProducts.length > 0 ? (
             cartProducts.map(product => (
-              <div className='flex justify-center '>
-              <div key={product.product_id} className='flex justify-center h-full w-full items-center overscroll-x-none bg-white mx-2 my-3 p-2 rounded-lg shadow-md sm: 2xl: '>
-                <img className='w-32 h-32 object-contain' src={`${process.env.REACT_BACKEND_URL}/${product.image}`} alt={product.product_name} />
+              // eslint-disable-next-line react/jsx-key
+              <div className='flex justify-center my-2'>
+              <div key={product.product_id} className='flex justify-center h-full w-full items-center  overscroll-x-none bg-white mx-2  p-2 rounded-lg shadow-md sm: 2xl: '>
+                <img className='w-20 h-20 mx-2 my-2 object-cover' src={`http://localhost:5000/${product.image}`} alt={product.product_name} />
                 <div className='flex w-full justify-between '>
                   <div className=' flex flex-col justify-center h-full'>
-                    <h2 className='font-semibold'>{product.product_name}</h2>
+                    <h2 className='font-semibold mt-2'>{product.product_name}</h2>
                     <p className='font-bold'>{product.category}</p>
                   </div>
-                  <div className='flex'>
+                  <div className='flex my-5'>
                     <Button type='primary' className='w-1 h-6' onClick={() => handleDecrement(product.product_id)}>-</Button>
                     <p className='mx-2 type'>{product.quantity}</p>
                     <Button type='primary '  className='w-1 h-6' onClick={() => handleIncrement(product.product_id)}>+</Button>
                   </div>
-                  <p className='font-extrabold text-1xl'>${(product.quantity * product.price).toFixed(2)}</p>
-                  <Button type='danger' className='text-2xl font-bold text-red-500' onClick={() => handleRemove(product.product_id)}>X</Button>
+                  <p className='font-extrabold my-5 text-1xl'>${(product.quantity * product.price).toFixed(2)}</p>
+                  <Button type='danger' className='my-5 text-2xl font-bold text-red-500' onClick={() => handleRemove(product.product_id)}>X</Button>
                 </div>
               </div>
               </div>

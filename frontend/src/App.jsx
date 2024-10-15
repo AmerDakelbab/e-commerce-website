@@ -47,7 +47,11 @@ function App() {
         setUserId(decodedToken.userId || decodedToken.sub || decodedToken.id);
         console.log("Decoded UserId:", decodedToken.userId || decodedToken.sub || decodedToken.id);
 
-        axios.get(`${process.env.REACT_BACKEND_URL}/cart`, {
+        if (decodedToken.userRole === 'Admin') {
+          navigate('/admin');
+        }
+
+        axios.get(`http://localhost:5000/cart`, {
           headers: {
             Authorization: `Bearer ${storedToken}`
           }
@@ -81,7 +85,7 @@ function App() {
 
 
     if (existingProduct) {
-      axios.post(`${process.env.REACT_BACKEND_URL}/cart/increment`, {
+      axios.post(`http://localhost:5000/cart/increment`, {
         userId: userId,
         productId: product.product_id
       }, {
@@ -101,7 +105,7 @@ function App() {
         .then(message.success("Product Quantity Incremented Successfully!", 10))
         .catch(error => console.error("Error Incrementing Product:", error.response?.data?.error || error.message));
     } else {
-      axios.post(`${process.env.REACT_BACKEND_URL}/cart`, {
+      axios.post(`http://localhost:5000/cart`, {
         userId: userId,
         productId: product.product_id
       }, {

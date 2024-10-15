@@ -6,7 +6,7 @@ function ViewUsers() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_BACKEND_URL}/admin/viewusers`)
+        fetch(`http://localhost:5000/admin/viewusers`)
             .then(response => response.json())
             .then(data => setUsers(data))
             .catch(error => console.error('Error fetching data:', error));

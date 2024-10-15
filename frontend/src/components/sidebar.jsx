@@ -7,7 +7,7 @@ function Sidebar({ isVisible, setIsVisible }) {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_BACKEND_URL}/categories`)
+        fetch(`http://localhost:5000/categories`)
             .then(response => response.json())
             .then(data => setCategories(data))
             .catch(error => console.error('Error fetching data:', error));

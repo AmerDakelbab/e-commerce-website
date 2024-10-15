@@ -20,7 +20,7 @@ function AddProducts() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_BACKEND_URL}/admin/viewcategories`);
+                const response = await axios.get(`http://localhost:5000/admin/viewcategories`);
                 setCategories(response.data);
                 console.log("respose", response.data);
             } catch (error) {
@@ -45,7 +45,7 @@ function AddProducts() {
         }
 
         try {
-            const response = await axios.post(`${process.env.REACT_BACKEND_URL}/admin/addproducts`, formData, {
+            const response = await axios.post(`http://localhost:5000/admin/addproducts`, formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',
                 },
@@ -109,8 +109,8 @@ function AddProducts() {
                     onChange={handleStockChange}
                 >
                     <Option value=''>Stock?</Option>
-                    <Option value='in_stock'>In Stock</Option>
-                    <Option value='out_of_stock'>Out Of Stock</Option>
+                    <Option value='in stock'>In Stock</Option>
+                    <Option value='out of stock'>Out Of Stock</Option>
                 </Select>
                 <Input className='my-2' placeholder='rating' value={productData.rating} name='rating' onChange={handleInput} />
                 <Input className='my-2' type='file' name='image' onChange={handleFileChange} />

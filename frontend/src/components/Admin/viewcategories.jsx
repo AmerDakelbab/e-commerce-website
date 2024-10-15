@@ -12,7 +12,7 @@ function Viewcategories() {
     const [currentCategoryId, setCurrentCategoryId] = useState(null);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_BACKEND_URL}/admin/viewcategories`)
+        fetch(`http://localhost:5000/admin/viewcategories`)
             .then(response => response.json())
             .then(data => setCatgories(data))
             .catch(error => console.error('Error fetching data:', error));
@@ -44,7 +44,7 @@ function Viewcategories() {
 
     const handleDelete = async (CategoryId) => {
         try {
-            const response = await fetch(`${process.env.REACT_BACKEND_URL}/admin/Viewcategories/${CategoryId}`, {
+            const response = await fetch(`http://localhost:5000/admin/Viewcategories/${CategoryId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -81,7 +81,7 @@ function Viewcategories() {
     
         try {
             // Include the category_name in the body of the request
-            const response = await axios.put(`${process.env.REACT_BACKEND_URL}/admin/Viewcategories/${currentCategoryId}`, {
+            const response = await axios.put(`http://localhost:5000/admin/Viewcategories/${currentCategoryId}`, {
                 category_name: editedCategories.category_name, // Pass the updated category name here
             }, {
                 headers: {

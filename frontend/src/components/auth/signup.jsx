@@ -25,7 +25,7 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${process.env.REACT_BACKEND_URL}/signup`, formData);
+            const response = await axios.post(`http://localhost:5000/signup`, formData);
             if (response.status === 200) {
                 message.success("Signup successful!"); 
                 console.log("Signup FormData Sent!");
